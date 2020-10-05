@@ -16,6 +16,7 @@ def main():
             d = Instrument(i, fx)
             _instruments.append(d)
             print('Succesfully init class for {}'.format(i))
+    fx.close()
 
 if __name__ == '__main__':
     main()
