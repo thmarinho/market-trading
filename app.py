@@ -3,12 +3,15 @@
 import fxcmpy
 import sys
 import re
+import os
 from modules.instrument import Instrument
+from dotenv import load_dotenv
 
 _instruments = []
 
 def main():
-    fx = fxcmpy.fxcmpy(access_token="ef1ba0ada018efae88893f622d0997fc354778a2", log_level="error")
+    load_dotenv()
+    fx = fxcmpy.fxcmpy(access_token=os.getenv("FXCM_API_KEY"), log_level="error")
     print("Connection to FXCM etablished")
     instruments = fx.get_instruments()
     for i in instruments:
