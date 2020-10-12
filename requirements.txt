@@ -1,3 +1,2 @@
 fxcmpy
 python-socketio
-python-dotenv
