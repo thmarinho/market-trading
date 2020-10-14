@@ -25,9 +25,10 @@ pip
 * [Théo Marinho](theo.marinho@epitech.eu)
 * [Thomas Bocquez](thomas.bocquez@eptiech.eu)
 
-## Python > c++
+## Why python ?
 ```
-We chose Python for several reasons: it's an easy-to-use language, and also a laguage made for mathematics.
-In locurence this project is largely made up of mathematics.
-Since the project includes an important part of algorythmics and Python has a large choice of data processing libraries, we chose this language instead of C++.
+We choose Python for for several reasons
+First of all, Python is an easy to use language.
+Moreover, this language is made for mathematics and, I wish you know, this project is largely made of mathematics.
+And last but not least, a big part of this project is based on algorithm and python has a large choise of data processing library
 ```
