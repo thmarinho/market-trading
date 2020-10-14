@@ -20,11 +20,6 @@ python3
 pip
 ```
 ---
-## Authors
-* [Arthur Le Breton](arthut.le-breton@epitech.eu)
-* [Théo Marinho](theo.marinho@epitech.eu)
-* [Thomas Bocquez](thomas.bocquez@eptiech.eu)
-
 ## Why python ?
 ```
 We choose Python for for several reasons
@@ -32,3 +27,8 @@ First of all, Python is an easy to use language.
 Moreover, this language is made for mathematics and, I wish you know, this project is largely made of mathematics.
 And last but not least, a big part of this project is based on algorithm and python has a large choise of data processing library
 ```
+---
+## Authors
+* [Arthur Le Breton](arthut.le-breton@epitech.eu)
+* [Théo Marinho](theo.marinho@epitech.eu)
+* [Thomas Bocquez](thomas.bocquez@eptiech.eu)
