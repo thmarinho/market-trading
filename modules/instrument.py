@@ -3,6 +3,7 @@
 from time import sleep
 from _thread import start_new_thread
 from os.path import exists
+from . import sorting
 
 class Instrument:
     name = ""
@@ -19,6 +20,11 @@ class Instrument:
         while True:
             d = self.fx.get_last_price(self.name)
             print("Thread-" + self.name + " | ", d[0], d[1], d[2], d[3])
+            try:
+                thread_line = sorting.CurrencyExtract(self.name, d[0], d[1], d[2], d[3])
+                thread_line.write_in_file()
+            except Exception as a: 
+                print(a)
             sleep(1)
 
     def init_log_file(self):

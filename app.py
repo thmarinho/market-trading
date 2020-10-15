@@ -17,6 +17,7 @@ def main():
     for i in instruments:
         if re.compile("[A-Z]{3}\/[A-Z]{3}").match(i):
             Instrument(i, fx)
+            
             try:
                 d = Instrument(i, fx)
                 _instruments.append(d)
