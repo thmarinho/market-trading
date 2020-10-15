@@ -8,6 +8,7 @@ from modules.instrument import Instrument
 from modules.color import colors
 
 _instruments = []
+fx = None
 
 def main():
     fx = fxcmpy.fxcmpy(config_file="./config/fxcm.cfg")
@@ -15,6 +16,7 @@ def main():
     instruments = fx.get_instruments()
     for i in instruments:
         if re.compile("[A-Z]{3}\/[A-Z]{3}").match(i):
+            Instrument(i, fx)
             try:
                 d = Instrument(i, fx)
                 _instruments.append(d)
@@ -23,7 +25,16 @@ def main():
                 print("[" + colors.FAIL + " KO " + colors.DEF + "] Initializing class for {}".format(i))
                 fx.close()
                 sys.exit(1)
+    while True:
+        None
     fx.close()
 
 if __name__ == '__main__':
     main()
+    #try:
+    #    main()
+    #except:
+    #    print(colors.FAIL + "An unhandled error occured.\nAborting." + colors.DEF)
+    #    if fx:
+    #        fx.close()
+    #    sys.exit(1)
