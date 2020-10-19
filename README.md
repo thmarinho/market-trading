@@ -28,6 +28,10 @@ Moreover, this language is made for mathematics and, I wish you know, this proje
 And last but not least, a big part of this project is based on algorithm and python has a large choise of data processing library
 ```
 ---
+## Algorithm
+![](./algorithm.png)
+
+---
 ## Authors
 * [Arthur Le Breton](arthut.le-breton@epitech.eu)
 * [Théo Marinho](theo.marinho@epitech.eu)

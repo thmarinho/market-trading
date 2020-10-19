@@ -1,4 +1,0 @@
-- [ ] Setup a .env file
-- [ ] Find the best indicators to use for short term trading
-- [ ] Schematize the algorithm and export it as a pdf
-- [ ] Write some meanningful documentation and place in the docs folder
