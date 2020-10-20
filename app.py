@@ -4,6 +4,7 @@ import fxcmpy
 import sys
 import re
 import os
+from time import sleep
 from modules.instrument import Instrument
 from modules.color import colors
 
@@ -12,6 +13,7 @@ fx = None
 
 def main():
     fx = fxcmpy.fxcmpy(config_file="./config/fxcm.cfg")
+    fx.close_all()
     print("Connection to FXCM etablished")
     instruments = fx.get_instruments()
     for i in instruments:
@@ -27,6 +29,7 @@ def main():
                 sys.exit(1)
     while True:
         None
+    # fx.close_all()
     fx.close()
 
 if __name__ == '__main__':
