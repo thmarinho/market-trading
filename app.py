@@ -22,7 +22,7 @@ def main():
             sys.exit(1)
     else:
         instruments = fx.get_instruments()
-        for i in instruments:
+        for i in instruments[0:5]:
             if re.compile("[A-Z]{3}\/[A-Z]{3}").match(i):
                 Instrument(i, fx)
                 try:
@@ -30,7 +30,6 @@ def main():
                     print("[" + colors.OK + " OK " + colors.DEF + "] Initializing class for {}".format(i))
                 except:
                     print("[" + colors.FAIL + " KO " + colors.DEF + "] Initializing class for {}".format(i))
-                    fx.close()
                     sys.exit(1)
     while True:
         None

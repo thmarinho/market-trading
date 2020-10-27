@@ -16,21 +16,28 @@ class Instrument:
         start_new_thread(self.init_clandles, ())
 
     def init_clandles(self):
-        self.fx.subscribe_market_data(self.name, ())
+        try:
+            self.fx.subscribe_market_data(self.name, ())
+        except:
+            print('Killing thread for ' + self.name)
+            return
         while True:
+            last_value = self.fx.get_last_price(self.name)
+            print('Looping on ' + self.name)
             try:
                 i = Bollinger(self.name, self.fx)
                 if not self.have_positions():
                     if i.should_buy():
-                        self.fx.open_trade(symbol=self.name, is_buy=True, amount=str(5), time_in_force='GTC', order_type="AtMarket", is_in_pips=False)
+                        self.fx.open_trade(symbol=self.name, is_buy=True, amount=str(20), time_in_force='GTC', order_type="AtMarket", is_in_pips=False)
                         print("Buy positions for " + self.name)
+                    else:
+                        print('Buy is not an option for ' + self.name)
                 elif i.should_sell():
                     self.fx.close_all_for_symbol(self.name)
                     print("Sell positions for " + self.name)
                 else:
                     print("Do nothing for " + self.name)
             except:
-                self.fx.close()
                 exit(1)
             sleep(2)
 
