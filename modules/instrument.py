@@ -8,11 +8,16 @@ from time import time
 from modules.bollinger import Bollinger
 
 class Instrument:
-    name = ""
 
     def __init__(self, name, fx):
         self.name = name
         self.fx = fx
+        self.position = {
+            "type": "",
+            "open": 0.0,
+            "stop": 0.0,
+            "limit": 0.0
+        }
         start_new_thread(self.init_clandles, ())
 
     def init_clandles(self):
@@ -22,28 +27,21 @@ class Instrument:
             print('Killing thread for ' + self.name)
             return
         while True:
-            last_value = self.fx.get_last_price(self.name)
-            print('Looping on ' + self.name)
-            try:
-                i = Bollinger(self.name, self.fx)
-                if not self.have_positions():
-                    if i.should_buy():
-                        self.fx.open_trade(symbol=self.name, is_buy=True, amount=str(20), time_in_force='GTC', order_type="AtMarket", is_in_pips=False)
-                        print("Buy positions for " + self.name)
-                    else:
-                        print('Buy is not an option for ' + self.name)
-                elif i.should_sell():
-                    self.fx.close_all_for_symbol(self.name)
-                    print("Sell positions for " + self.name)
-                else:
-                    print("Do nothing for " + self.name)
-            except:
-                exit(1)
-            sleep(2)
+            i = Bollinger(self.name, self.fx)
+            if not self.have_positions():
+                self.position = i.check_buy()
+            else:
+                self.position = i.check_PL(self.get_trade_id(), self.position)
+            sleep(30)
 
     def have_positions(self):
-        postions = self.fx.get_open_positions(kind='list')
-        if postions == []:
+        positions = self.fx.get_open_positions(kind='list')
+        if positions == []:
             return False
-        return len(list(filter(lambda d: d['currency'] == self.name, postions))) > 0
-
+        return len(list(filter(lambda d: d['currency'] == self.name, positions))) > 0
+    
+    def get_trade_id(self):
+        positions = self.fx.get_open_positions(kind='list')
+        l = list(filter(lambda d: d['currency'] == self.name, positions))
+        if l:
+            return l[0]['tradeId']

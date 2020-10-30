@@ -22,9 +22,8 @@ def main():
             sys.exit(1)
     else:
         instruments = fx.get_instruments()
-        for i in instruments[0:5]:
+        for i in instruments[0:10]:
             if re.compile("[A-Z]{3}\/[A-Z]{3}").match(i):
-                Instrument(i, fx)
                 try:
                     Instrument(i, fx)
                     print("[" + colors.OK + " OK " + colors.DEF + "] Initializing class for {}".format(i))
